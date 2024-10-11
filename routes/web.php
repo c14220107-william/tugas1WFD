@@ -6,7 +6,9 @@ use App\Http\Controllers\OrganizerController;
 use Illuminate\Support\Facades\Route;
 
 
-
+Route::get('/', function () {
+    return redirect()->route('events.index');
+});
 Route::get('/events', [EventSController::class, 'index'])->name('events.index');
 Route::get('/master_data/events', [EventsController::class, 'masterData'])->name('master.data.events.index');
 // Route::get('/events/{event}', [EventsController::class, 'show'])->name('events.show');

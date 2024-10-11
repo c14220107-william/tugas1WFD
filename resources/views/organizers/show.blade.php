@@ -10,6 +10,9 @@
     <p><strong>Website Link:</strong> <a href="{{ $organizer->website_link }}" class="text-blue-500" target="_blank">{{ $organizer->website_link }}</a></p>
 
     <a href="{{ route('organizers.edit', $organizer->id) }}" class="btn btn-warning">Edit Organizer</a>
-    <a href="{{ route('organizers.index') }}" class="btn btn-secondary">Back to Organizers</a>
+    <form action="{{ route('organizers.destroy', $organizer->id) }}" method="POST" class="d-inline">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Delete</button>
 </div>
 @endsection

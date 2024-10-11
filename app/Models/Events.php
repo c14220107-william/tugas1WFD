@@ -27,12 +27,12 @@ class Events extends Model
      // Relasi ke model Organizer
      public function organizer(): BelongsTo
      {
-         return $this->belongsTo(Organizers::class,'organizers_id');  // Pastikan nama class dan namespace benar
+         return $this->belongsTo(Organizers::class,'organizers_id');  
      }
  
      // Relasi ke model EventCategory
      public function eventCategory()
      {
-         return $this->belongsTo(Event_Categories::class,'event_category_id');  // Pastikan nama class dan namespace benar
+         return $this->belongsTo(Event_Categories::class,'event_category_id'); 
      }
 }

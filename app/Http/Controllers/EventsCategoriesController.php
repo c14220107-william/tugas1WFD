@@ -12,7 +12,7 @@ class EventsCategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Event_Categories::all(); // Mengambil semua kategori event
+        $categories = Event_Categories::all();
         return view('event_categories.index', compact('categories'));
     }
 
@@ -43,7 +43,7 @@ class EventsCategoriesController extends Controller
      */
     public function show(Event_Categories $eventCategory)
     {
-        return view('event_categories.show', compact('eventCategory')); // Menampilkan detail kategori event
+        return view('event_categories.show', compact('eventCategory')); 
     }
 
     /**
@@ -65,7 +65,7 @@ class EventsCategoriesController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $eventCategories->update($validatedData); 
+        $eventCategories->update($validatedData);
         
         return redirect()->route('event_categories.index')->with('success', 'Event category updated successfully.');
     }

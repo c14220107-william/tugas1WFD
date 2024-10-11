@@ -20,7 +20,7 @@ class OrganizerController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi data
+        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -45,7 +45,7 @@ class OrganizerController extends Controller
 
     public function update(Request $request, Organizers $organizer)
     {
-        // Validasi data
+        
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',

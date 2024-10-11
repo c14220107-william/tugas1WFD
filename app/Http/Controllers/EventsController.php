@@ -75,7 +75,7 @@ class EventsController extends Controller
 
     public function update(Request $request, Events $event)
     {
-        // Validasi data
+        
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'venue' => 'required|string|max:255',

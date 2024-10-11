@@ -23,10 +23,10 @@
         <tbody>
             @foreach ($organizers as $organizer)
                 <tr>
-                    <td>{{ $organizer->name }}</td>
+                    <td><a href="{{ route('organizers.show', $organizer->id) }}" >{{ $organizer->name }}</a></td>
                     <td>{{ $organizer->description }}</td>
                     <td>
-                        <a href="{{ route('organizers.show', $organizer->id) }}" class="btn btn-info">View</a>
+                        
                         <a href="{{ route('organizers.edit', $organizer->id) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('organizers.destroy', $organizer->id) }}" method="POST" class="d-inline">
                             @csrf
