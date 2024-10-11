@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Organizers extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'description',
+        'facebook_link',
+        'x_link',
+        'website_link',
+        'active',
+        
+
+
+    ];
 }

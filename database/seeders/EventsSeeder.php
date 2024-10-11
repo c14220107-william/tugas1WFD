@@ -17,10 +17,10 @@ class EventsSeeder extends Seeder
 
         for ($i = 0; $i < 6; $i++){
             DB::table('events')->insert([
-                'title' => fake()->sentence(3),
+                'title' => fake()->jobTitle(3),
                 'venue' => fake()->address(),
                 'date' => fake()->date(),
-                'start_time' => fake()->time(),
+                'start_time' => fake()->time('H:i'),
                 'description' => fake()->paragraph(),
                 'booking_url' => fake()->url(),
                 'tags' => implode(',', fake()->words(3)),

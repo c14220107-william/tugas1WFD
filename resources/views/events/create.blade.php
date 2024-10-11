@@ -2,6 +2,15 @@
 
 @section('content')
 <div class="container mx-auto">
+    @if($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <h1 class="text-2xl font-bold mb-4">Add Event</h1>
 
     <form action="{{ route('events.store') }}" method="POST">
@@ -23,8 +32,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="start_time" class="form-label">Start Time</label>
-            <input type="time" name="start_time" id="start_time" class="form-control" required>
+            <label for="start_time" class="form-label">Time</label>
+            <input type="time" name="start_time" id="start_time" class="form-control" required min="00:00:" max="23:59">
         </div>
 
         <div class="mb-3">
@@ -43,8 +52,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="organizer_id" class="form-label">Organizer</label>
-            <select name="organizer_id" id="organizer_id" class="form-select" required>
+            <label for="organizers_id" class="form-label">Organizer</label>
+            <select name="organizers_id" id="organizers_id" class="form-select" required>
                 @foreach ($organizers as $organizer)
                     <option value="{{ $organizer->id }}">{{ $organizer->name }}</option>
                 @endforeach

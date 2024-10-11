@@ -41,7 +41,7 @@ class EventsCategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event_Categories $eventCategory)
     {
         return view('event_categories.show', compact('eventCategory')); // Menampilkan detail kategori event
     }
@@ -49,7 +49,7 @@ class EventsCategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event_Categories $eventCategory)
     {
         return view('event_categories.edit', compact('eventCategory')); // Menampilkan form edit
 
@@ -65,7 +65,8 @@ class EventsCategoriesController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        $eventCategories->update($validatedData); // Memperbarui data kategori event
+        $eventCategories->update($validatedData); 
+        
         return redirect()->route('event_categories.index')->with('success', 'Event category updated successfully.');
     }
 

@@ -9,13 +9,13 @@ class OrganizerController extends Controller
 {
     public function index()
     {
-        $organizers = Organizers::all(); // Mengambil semua organizer
+        $organizers = Organizers::all(); 
         return view('organizers.index', compact('organizers'));
     }
 
     public function create()
     {
-        return view('organizers.create'); // Menampilkan form untuk menambah organizer baru
+        return view('organizers.create'); 
     }
 
     public function store(Request $request)
@@ -29,18 +29,18 @@ class OrganizerController extends Controller
             'website_link' => 'nullable|url',
         ]);
 
-        Organizers::create($validatedData); // Menyimpan data organizer baru
+        Organizers::create($validatedData); 
         return redirect()->route('organizers.index')->with('success', 'Organizer created successfully.');
     }
 
     public function show(Organizers $organizer)
     {
-        return view('organizers.show', compact('organizer')); // Menampilkan detail organizer
+        return view('organizers.show', compact('organizer')); 
     }
 
     public function edit(Organizers $organizer)
     {
-        return view('organizers.edit', compact('organizer')); // Menampilkan form edit
+        return view('organizers.edit', compact('organizer'));
     }
 
     public function update(Request $request, Organizers $organizer)
@@ -54,13 +54,17 @@ class OrganizerController extends Controller
             'website_link' => 'nullable|url',
         ]);
 
-        $organizer->update($validatedData); // Memperbarui data organizer
+        $organizer->update($validatedData);
         return redirect()->route('organizers.index')->with('success', 'Organizer updated successfully.');
     }
 
     public function destroy(Organizers $organizer)
     {
-        $organizer->delete(); // Menghapus organizer
+        $organizer->delete(); 
         return redirect()->route('organizers.index')->with('success', 'Organizer deleted successfully.');
+    }
+    public function detail(Organizers $organizer){
+
+
     }
 }

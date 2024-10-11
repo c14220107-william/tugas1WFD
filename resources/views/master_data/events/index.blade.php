@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table id="example" class="display" style="width: 100%">
         <thead>
             <tr>
                 <th>Event Name</th>
@@ -27,14 +27,14 @@
         <tbody>
             @foreach ($events as $event)
                 <tr>
-                    <td>{{ $event->title }}</td>
+                    <td><a href="{{ route('events.show', $event->id) }}">{{ $event->title }}</a></td>
                     <td>{{ $event->date }}</td>
                     <td>{{ $event->venue }}</td>
                     <td>{{ $event->organizer->name }}</td>
                     <td>{{ $event->description }}</td>
                     <td>{{ $event->tags }}</td>
                     <td>
-                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-info">View</a>
+                        
                         <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning">Edit</a>
                         <form action="{{ route('events.destroy', $event->id) }}" method="POST" class="d-inline">
                             @csrf

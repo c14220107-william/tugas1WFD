@@ -7,6 +7,15 @@
     <form action="{{ route('events.update', $event->id) }}" method="POST">
         @csrf
         @method('PUT')
+        @if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
@@ -24,8 +33,10 @@
         </div>
 
         <div class="mb-3">
-            <label for="start_time" class="form-label">Start Time</label>
-            <input type="time" name="start_time" id="start_time" value="{{ $event->start_time }}" class="form-control" required>
+            <label for="start_time" class="form-label">Time</label>
+            
+            <input type="time" name="start_time" id="start_time" value="{{ $event->start_time }}" class="form-control" 
+            min="00:00:" max="23:59">
         </div>
 
         <div class="mb-3">
@@ -38,12 +49,7 @@
             <input type="url" name="booking_url" id="booking_url" value="{{ $event->booking_url }}" class="form-control">
         </div>
 
-        {{-- <div class="mb-3">
-            <label for="tags" class="form-label">Tags</label>
-            <input type="text" name="tags" id="tags" class="form-control" data-role="tagsinput" value="{{ implode(',', $event->tags) }}" required> <!-- Menampilkan tags yang ada -->
-        </div>
-         --}}
-         <div class="mb-3">
+        <div class="mb-3">
             <label for="tags" class="form-label">Tags</label>
             <div class="input-group mb-2">
                 <input type="text" name="tagInput" id="tagInput" class="form-control" placeholder="Add a tag" aria-label="Add a tag">
@@ -58,9 +64,11 @@
             </div>
         </div>
 
+        <input type="hidden" name="tags" id="tags" value="{{ $event->tags }}">
+
         <div class="mb-3">
-            <label for="organizer_id" class="form-label">Organizer</label>
-            <select name="organizer_id" id="organizer_id" class="form-select" required>
+            <label for="organizers_id" class="form-label">Organizer</label>
+            <select name="organizers_id" id="organizers_id" class="form-select" required>
                 @foreach ($organizers as $organizer)
                     <option value="{{ $organizer->id }}" {{ $event->organizer_id == $organizer->id ? 'selected' : '' }}>{{ $organizer->name }}</option>
                 @endforeach
@@ -76,23 +84,11 @@
             </select>
         </div>
 
-        <!-- Input tersembunyi untuk menyimpan semua tags -->
-        <input type="hidden" name="tags" id="tags" value="{{ $event->tags }}">
-
         <button type="submit" class="btn btn-primary">Update Event</button>
     </form>
 </div>
 
 @section('scripts')
-{{-- <script>
-    $(document).ready(function() {
-        // Inisialisasi tags input
-        $('#tags').tagsinput({
-            maxTags: 10,
-            trimValue: true
-        });
-    });
-</script> --}}
 <script>
     $(document).ready(function() {
         const updateTagsInput = () => {
@@ -108,7 +104,7 @@
             if (tagValue) {
                 const badge = $('<span class="badge bg-primary me-1"></span>').text(tagValue);
                 const closeButton = $('<button type="button" class="btn-close btn-close-white ms-1" aria-label="Close"></button>');
-                
+
                 closeButton.on('click', function() {
                     badge.remove();
                     updateTagsInput(); // Update hidden input saat tag dihapus
@@ -121,7 +117,6 @@
             }
         });
 
-        // Function to remove tag by ID
         window.removeTag = function(tagId) {
             document.getElementById(tagId).remove();
             updateTagsInput(); // Update hidden input saat tag dihapus

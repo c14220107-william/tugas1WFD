@@ -4,7 +4,7 @@
 <div class="container mx-auto">
     <h1 class="text-2xl font-bold mb-4">Organizer List</h1>
 
-    <a href="{{ route('organizers.create') }}" class="btn btn-primary mb-4">Add Organizer</a>
+    <a href="{{ route('organizers.create') }}" class="btn btn-primary mb-4">Create</a>
 
     @if (session('success'))
         <div class="alert alert-success" role="alert">
@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
+    <table id="example" class="display" style="width: 100%">
         <thead>
             <tr>
                 <th>Name</th>

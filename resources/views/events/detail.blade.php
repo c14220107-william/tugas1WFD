@@ -10,7 +10,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-            <p class="text-lg font-semibold text-gray-700"><strong>Location:</strong> {{ $event->venue }}</p>
+            <p class="text-lg font-semibold text-gray-700"><strong>Venue:</strong> {{ $event->venue }}</p>
             <p class="text-lg font-semibold text-gray-700"><strong>Date:</strong> {{ $event->formatted_date }}</p>
             <p class="text-lg font-semibold text-gray-700"><strong>Time:</strong> {{ $event->start_time }}</p>
         </div>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="mt-4">
-        <h2 class="text-xl font-bold text-gray-800 mb-2">Booking URL</h2>
+        <h2 class="text-xl font-bold text-gray-800 mb-2">Booking Information</h2>
         <p class="text-blue-500"><a href="{{ $event->booking_url }}" target="_blank" class="hover:underline">{{ $event->booking_url }}</a></p>
     </div>
 
@@ -40,9 +40,6 @@
             @endforeach
         </div>
     </div>
-
-    
-
 
     
 </div>
